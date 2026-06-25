@@ -10,9 +10,11 @@ import (
 const bannerFile = "standard.txt"
 
 // Function to load banner file
-func loadBanner(fileName string) []string {
-	data, _ := os.ReadFile(fileName)
-
+func loadBanner(fileName string) ([]string, error) {
+	data, err := os.ReadFile(fileName)
+	if err != nil {
+		return nil, err
+	}
 
 	banner := strings.Split(string(data), "\n")
 	return banner, nil
@@ -85,5 +87,3 @@ func main() {
 	// Print result
 	fmt.Print(output)
 }
-
-
